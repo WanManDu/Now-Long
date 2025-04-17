@@ -1,6 +1,6 @@
-const QuizMeta = require("../modles/QuizMeta");
+const QuizMeta = require("../models/QuizMeta");
 const QuizAnswer = require("../models/QuizAnswer");
-const ChartData = require("../models/CharData");
+const ChartData = require("../models/ChartData");
 const User = require("../models/User");
 
 //랜덤 퀴즈 1개 제공
@@ -51,8 +51,17 @@ exports.submitQuizAnswer = async (req, res) => {
         //사용자 정보 확인
         let user = await User.findOne({ uid: req.user.uid });
         if (!user) {
-            user = await User.create({ uid: req.user.uid });
+            user = await User.create({ uid: req.user.uid, rating: 1000 });
         }
+
+        //퀴즈 메타 정보 가져오기(정답 판독용)
+        const quizMeta = await QuizMeta.findById(quizMetaId);
+        if (!quizMeta) {
+            return res.status(404).json({ error: "Quiz not found"});
+        }
+
+        //(MVP에서는 정답 여부를 수동으로 처리해야 하는데 일단은 임시로 isCorrect = true 고정)
+        const isCorrect = true;
 
         //사용자 퀴즈 제출 저장
         const answer = await QuizAnswer.create({
@@ -60,12 +69,17 @@ exports.submitQuizAnswer = async (req, res) => {
             quizMetaId,
             prediction,
             reasons,
-            isCorrect: false
+            isCorrect: isCorrect
         });
 
-        //경험치 증가 & 진행도 업데이트
-        user.exp += 10;
-        user.quizzesSolved +=1;
+        //레이팅 점수 조정
+        user.rating += 5;
+        if (isCorrect) {
+            user.rating += 5;
+        } else {
+            user.rating -= 15;
+        }
+
         await user.save();
 
         res.json({ success: true, answer });

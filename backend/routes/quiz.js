@@ -9,6 +9,6 @@ router.get("/random", authenticate, getRandomQuiz);
 
 //[post] /api/quiz/submit
 //사용자의 퀴즈 응답 저장
-router.post("/subimt", authenticate, submitQuizAnswer);
+router.post("/submit", authenticate, submitQuizAnswer);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const User = require("../models/User");
 
 //사용자 프로필 변환
-exports.getPorfile = async (req, res) => {
+exports.getProfile = async (req, res) => {
     try {
         const user = await User.findOne({ uid: req.user.uid});
 

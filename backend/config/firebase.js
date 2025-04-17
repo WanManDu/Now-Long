@@ -1,10 +1,10 @@
-//Firebase Admin SDK 초기화
 const admin = require("firebase-admin");
+const serviceAccount = require("./firebaseServiceAccountKey.json"); // 🔥 여기!
 
 function initializeFirebase() {
     admin.initializeApp({
-        credential: admin.credential.applicationDefault()
+        credential: admin.credential.cert(serviceAccount),
     });
 }
 
-module.exports = {admin, initializeFirebase};
+module.exports = { admin, initializeFirebase };
