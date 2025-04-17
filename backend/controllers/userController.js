@@ -11,8 +11,7 @@ exports.getProfile = async (req, res) => {
 
         res.json({
             uid: user.uid,
-            level: user.level,
-            exp: user.exp,
+            rating: user.rating,
             coin: user.coins,
             quizzesSolved: user.quizzesSolved,
             createdAt: user.createdAt,
