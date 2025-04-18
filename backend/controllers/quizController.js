@@ -60,6 +60,11 @@ exports.submitQuizAnswer = async (req, res) => {
             return res.status(404).json({ error: "Quiz not found"});
         }
 
+        const chartData = await ChartData.findById(quizMetaId.chartDataId); 
+        if (!chartData) {
+            return res.status(404).json({ error: "chartData not found"});
+        }
+
         //(MVP에서는 정답 여부를 수동으로 처리해야 하는데 일단은 임시로 isCorrect = true 고정)
         const isCorrect = true;
 
@@ -82,7 +87,11 @@ exports.submitQuizAnswer = async (req, res) => {
 
         await user.save();
 
-        res.json({ success: true, answer });
+        res.json({
+            success: true, 
+            answer ,
+            answerImageUrl: chartData?.answerImageUrl || null
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Failed to submit Answer"});

@@ -25,7 +25,8 @@ async function seed() {
         { date: new Date("2024-01-02"), open: 152, high: 158, low: 151, close: 157, volume: 1200000 },
         { date: new Date("2024-01-03"), open: 157, high: 160, low: 155, close: 156, volume: 900000 }
         // 필요한 만큼 추가 가능
-      ]
+    ],
+    answerImageUrl: "https://example.com/sample-answer-chart.png"
     });
 
     // 2. QuizMeta 생성
