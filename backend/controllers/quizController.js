@@ -60,7 +60,7 @@ exports.submitQuizAnswer = async (req, res) => {
             return res.status(404).json({ error: "Quiz not found"});
         }
 
-        const chartData = await ChartData.findById(quizMetaId.chartDataId); 
+        const chartData = await ChartData.findById(quizMeta.chartDataId); 
         if (!chartData) {
             return res.status(404).json({ error: "chartData not found"});
         }
