@@ -11,7 +11,7 @@ app.use((req, res, next) => {
     console.log(`🔥 [APP] 요청 들어옴: ${req.method} ${req.path}`);
     next();
   });
-  
+
 app.use(cors({
     origin: '*', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -27,6 +27,7 @@ initializeFirebase();
 app.use("/api/quiz", require("./routes/quiz"));
 app.use("/api/user", require("./routes/user"));
 app.use("/api/feedback", require("./routes/feedback"));
+app.use("/api/auth", require("./routes/auth"));
 
 //서버 시작
 const PORT = process.env.PORT || 5050;

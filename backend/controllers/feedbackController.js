@@ -9,7 +9,7 @@ exports.generateFeedback = async (req, res) => {
         return res.status(400).json({error: "Missing required fields "});
     }
 
-    const prompt = buildPrompts({ chartData, indicators, userReasons});
+    const prompt = buildPrompt({ chartData, indicators, userReasons});
 
     try{
         const response = await axios.post(
