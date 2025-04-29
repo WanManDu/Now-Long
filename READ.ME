@@ -1,0 +1,55 @@
+# 🧠 NowLong — 차트 해석 트레이닝 웹 서비스
+
+NowLong은 **초보 트레이더**를 위한  
+**차트 해석 능력 퀴즈** 기반 트레이닝 웹 서비스입니다.
+
+간단한 퀴즈 형식으로 매매 근거를 훈련하고,  
+AI 피드백을 받아 실력을 체계적으로 성장시킬 수 있습니다.
+
+---
+
+## 🚀 프로젝트 목표
+
+- 초보 트레이더의 "차트 읽기" 능력 향상
+- 단순 매수/매도 추천이 아닌 **스스로 근거를 제시하는 능력** 훈련
+- AI(GPT) 기반 피드백으로 객관적이고 빠른 피드백 제공
+- 모바일/웹 모두 사용 가능한 **반응형 인터페이스** 제공
+
+---
+
+## 🏗️ 기술 스택
+
+| 분류 | 스택 |
+|-----|------|
+| 프론트엔드 | Next.js 14 (App Router) + TypeScript + TailwindCSS |
+| 백엔드 | Node.js + Express |
+| 인증 시스템 | Firebase Authentication (Google OAuth2) |
+| 데이터베이스 | MongoDB Atlas |
+| 차트 시각화 | TradingView Charting Library |
+| AI 피드백 | OpenAI GPT API |
+
+---
+
+## ✨ 핵심 기능 (MVP 기준)
+
+- **Google OAuth2 로그인** (Firebase 연동)
+- **랜덤 차트 퀴즈 출제** (과거 OHLCV 데이터 기반)
+- **Long / Short 방향 예측** 제출
+- **매수/매도 근거 직접 입력**
+- **GPT 기반 AI 피드백 제공** (사용자 답변 + 차트 분석)
+- **사용자 레이팅 시스템** (정답률에 따라 성장)
+- **모바일/PC 완벽 대응 (Responsive Design)**
+
+---
+
+## 🧩 프로젝트 아키텍처
+
+```bash
+/nowlong-web
+ ├── /src
+ │    ├── /app             # Next.js App Router 기반 페이지
+ │    ├── /components      # 공통 UI 컴포넌트
+ │    ├── /hooks           # 커스텀 React Hooks
+ │    ├── /lib             # Firebase, API 클라이언트
+ │    └── /styles          # TailwindCSS 글로벌 스타일
+ └── /backend              # Node.js + Express API 서버
